@@ -51,8 +51,8 @@ static void keep_sockalive(SOCKETTYPE fd)
 {
 	const int tcp_one = 1;
 #ifndef WIN32
-	const int tcp_keepidle = 45;
-	const int tcp_keepintvl = 30;
+	const int tcp_keepidle = 5;
+	const int tcp_keepintvl = 4;
 	int flags = fcntl(fd, F_GETFL, 0);
 
 	fcntl(fd, F_SETFL, O_NONBLOCK | flags);
@@ -255,8 +255,8 @@ static void set_nettime(void)
 #if CURL_HAS_KEEPALIVE
 static void keep_curlalive(CURL *curl)
 {
-	const int tcp_keepidle = 45;
-	const int tcp_keepintvl = 30;
+	const int tcp_keepidle = 5;
+	const int tcp_keepintvl = 4;
 	const long int keepalive = 1;
 
 	curl_easy_setopt(curl, CURLOPT_TCP_KEEPALIVE, keepalive);
